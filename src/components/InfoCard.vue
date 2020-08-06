@@ -1,8 +1,8 @@
 <template>
-  <v-card class="mx-auto" max-width="344">
-    <v-card-title>{{ title }}</v-card-title>
-    <v-card-text>{{ text }}</v-card-text>
-    <v-card-actions>
+  <v-card id="info-card" class="mx-auto" max-width="344">
+    <v-card-title id="title-card">{{ title }}</v-card-title>
+    <v-card-text id="title-text">{{ text }}</v-card-text>
+    <v-card-actions id="title-actions">
       <v-btn @click="action">{{ buttonText }}</v-btn>
     </v-card-actions>
   </v-card>
