@@ -1,21 +1,19 @@
 /// <reference types="cypress" />
 import { mount } from 'cypress-vue-unit-test';
 import InfoCard from '../../src/components/InfoCard';
-import Vue from "vue";
-import Vuetify from 'vuetify';
+import vuetify from '../../src/plugins/vuetify';
 
-Vue.use(Vuetify);
+const use = [vuetify]
+
+const extensions = {
+  use,
+}
 
 describe('InfoCard', () => {
-  let vuetify;
-
-  beforeEach(() => {
-    vuetify = new Vuetify()
-  });
 
   it('Render component' , () => {
     mount(InfoCard, {
-      vuetify,
+      extensions,
       propsData: {
         title: 'Title example',
         text: 'Text example',
@@ -23,14 +21,15 @@ describe('InfoCard', () => {
       }
     });
     //Check visible elements
-    cy.get('#info-card').should('be.visible');
-    cy.get('#title-card').should('be.visible');
-    cy.get('#title-text').should('be.visible');
-    cy.get('#title-actions').should('be.visible');
+    cy.get("[data-test='info-card']").should('be.visible');
+    cy.get("[data-test='title-card']").should('be.visible');
+    cy.get("[data-test='title-text']").should('be.visible');
+    cy.get("[data-test='title-actions']").should('be.visible');
+    cy.get("[data-test='btn-red']").should('have.class', 'red')
 
     //Check props
-    cy.contains('Title example')
-    cy.contains('Text example')
-    cy.contains('Button text example')
+    cy.contains('Title example');
+    cy.contains('Text example');
+    cy.contains('Button text example');
   })
 });
