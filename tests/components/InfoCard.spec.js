@@ -11,7 +11,7 @@ const extensions = {
 
 describe('InfoCard', () => {
 
-  it('Render component' , () => {
+  beforeEach(() => {
     mount(InfoCard, {
       extensions,
       propsData: {
@@ -20,16 +20,27 @@ describe('InfoCard', () => {
         buttonText: 'Button text example'
       }
     });
-    //Check visible elements
+  });
+
+  it('Render component' , () => {
     cy.get("[data-test='info-card']").should('be.visible');
     cy.get("[data-test='title-card']").should('be.visible');
     cy.get("[data-test='title-text']").should('be.visible');
     cy.get("[data-test='title-actions']").should('be.visible');
     cy.get("[data-test='btn-red']").should('have.class', 'red')
+  });
 
-    //Check props
+  it('Check props', () => {
     cy.contains('Title example');
     cy.contains('Text example');
     cy.contains('Button text example');
-  })
+  });
+
+  it('Click action button', () => {
+    const spy = cy.spy();
+    Cypress.vue.$on('action', spy);
+    cy.get("[data-test='btn-red']").click().then(() => {
+      expect(spy).to.be.calledOnce;
+    })
+  });
 });
