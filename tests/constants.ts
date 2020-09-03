@@ -1,0 +1,1 @@
+export const NUMBER_OF_TODO_ITEMS: number = 2;

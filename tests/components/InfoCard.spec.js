@@ -3,11 +3,11 @@ import { mount } from 'cypress-vue-unit-test';
 import InfoCard from '../../src/components/InfoCard';
 import vuetify from '../../src/plugins/vuetify';
 
-const use = [vuetify]
+const use = [vuetify];
 
 const extensions = {
   use,
-}
+};
 
 describe('InfoCard', () => {
 
